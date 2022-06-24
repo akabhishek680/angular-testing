@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-testing';
+
+  userName: string ='';
+
+  setUserName = (userName: string):void => {
+    this.userName = userName;
+  }
 }
