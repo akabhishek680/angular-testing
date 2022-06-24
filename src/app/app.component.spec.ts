@@ -32,4 +32,18 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('angular-testing app is running!');
   });
+
+  it('should say hello world', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.sayHelloWorld()).toEqual('Hello World!!!');
+  });
+
+  it('should return true if numbers are sorted in increasing order', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.isSorted(1, 3)).toBeTruthy();
+  });
+
+
 });
