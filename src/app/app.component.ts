@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserDetailService } from './user-detail.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-testing';
+
+  constructor(private userDetailService: UserDetailService) {
+
+  }
+
+  isUserDataPresent = ():boolean => {
+
+    if(this.userDetailService.getDataFromServer() != null) {
+      return true;
+    }
+
+    return false;
+  }
 }
