@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
@@ -14,22 +15,25 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('should submit username', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    const component = fixture.componentInstance;
+    
+    const userName = fixture.debugElement.queryAll(By.css('input'))[0].nativeElement;
+    const submitButton = fixture.debugElement.queryAll(By.css('button'))[0];
+    const userNameDisplay = fixture.debugElement.queryAll(By.css('p'))[0].nativeElement;
 
-  it(`should have as title 'angular-testing'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-testing');
-  });
+    userName.value = 'abhishek';
+    userName.dispatchEvent(new Event('input'));
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    submitButton.triggerEventHandler('click', null);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-testing app is running!');
-  });
+    
+    console.log(userNameDisplay);
+    console.log(userNameDisplay.innerHTML);
+
+    expect(component.username).toBe('abhishek');
+    expect(userNameDisplay.innerHTML).toBe('abhishek');
+
+  })
 });

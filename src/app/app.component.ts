@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-testing';
+
+  username: string = '';
+
+  submit = (username: string) => {
+    this.username = username;
+    console.log(this.username);
+  }
 }
